@@ -30,31 +30,43 @@ function social(el, prefix) {
   function createElement(name) {
     if (!author[name]) return;
 
-    var text = title + '@' + author[name];
-
     var div = document.createElement('div');
     div.className = 'social-button-item social-button-' + name;
 
-    div.onclick = function(e) {
+    // social icon
+    var icon = document.createElement('a');
+    icon.className = 'social-button-icon social-button-icon-' + name + ' ' + prefix + name;
+    icon.target = '_blank';
+
+    var link = SERVICES[name];
+
+    if (name === 'twitter') {
+      link += '&via=' + encodeURIComponent(author[name]);
+    } else {
+      title = title + ' @' + author[name];
+    }
+
+    link = link.replace('{title}', encodeURIComponent(title));
+    link = link.replace('{url}', encodeURIComponent(url));
+    icon.href = link;
+
+    icon.onclick = function(e) {
       e.preventDefault && e.preventDefault();
-      share(SERVICES[name], text, url);
+      window.open(link, '_blank', 'width=615,height=505');
     };
 
-    // social icon
-    var span = document.createElement('span');
-    span.className = 'social-button-icon ' + prefix + name;
-    div.appendChild(span);
+    div.appendChild(icon);
 
     var fn = counter[name];
     if (fn) {
-      span = document.createElement('span');
+      var span = document.createElement('span');
+      div.appendChild(span);
 
       fn(url, function(c) {
-        span.innerHTML = c;
+        span.innerHTML = format(c);
+        span.className = 'social-button-count';
+        span.style.marginLeft = '-' + Math.floor(span.clientWidth / 2) + 'px';
       });
-
-      span.className = 'social-button-count';
-      div.appendChild(span);
     }
     el.appendChild(div);
     return div;
@@ -67,14 +79,22 @@ function social(el, prefix) {
 
 module.exports = social;
 
-
 /**
- * Alert for sharing.
+ * Format count.
  */
-function share(link, title, url) {
-  link = link.replace('{title}', encodeURIComponent(title));
-  link = link.replace('{url}', encodeURIComponent(url));
-  window.open(link, '_blank', 'width=615,height=505');
+function format(count) {
+  var ret = count / 1000000;
+
+  if (ret > 1) {
+    return Math.round(ret * 100) / 100 + 'M';
+  }
+
+  ret = count / 1000;
+  if (ret > 1) {
+    return Math.round(ret * 100) / 100 + 'K';
+  }
+
+  return count;
 }
 
 /**
