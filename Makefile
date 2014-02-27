@@ -16,4 +16,14 @@ compile:
 	@echo '})();' >> dist/widget.js
 	@uglifyjs dist/widget.js -m -o dist/widget.js
 
-.PHONY: clean
+gh-pages: compile
+	@rm -fr .gh-pages
+	@mkdir .gh-pages
+	@cp example.html .gh-pages/index.html
+	@cp social.css .gh-pages/
+	@cp -r dist .gh-pages/
+
+watch:
+	@rewatch index.js -c "make compile"
+
+.PHONY: clean gh-pages

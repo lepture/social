@@ -2,25 +2,22 @@ html, body {
   padding: 0;
   margin: 0;
   font-family: "Helvetica Nenu", Hevetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 .container {
   *width: 960px;
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 80px;
 }
-
-.header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-.header:after {
-  display: block;
+.container:after {
   content: '';
-  border-bottom: 1px solid #ddd;
-  width: 80px;
-  margin: 0 auto;
+  display: table;
+  clear: both;
+}
+.header {
+  padding-top: 80px;
+  text-align: center;
 }
 .header h1 {
   margin: 0 0 20px;
@@ -30,6 +27,75 @@ html, body {
 .header p {
   font: 28px/34px Georgia, "Times New Roman", Palatino, serif;
 }
-.case {
+
+.section {
+  margin-bottom: 60px;
+}
+.social-button {
+  margin-bottom: 30px;
+}
+.section:after {
+  display: block;
+  content: '';
+  border-bottom: 1px solid #ddd;
+  width: 80px;
+  margin: 0 auto;
+}
+.center {
   text-align: center;
+}
+.case {
+  padding: 20px 50px;
+  box-sizing: border-box;
+}
+.case code {
+  display: block;
+  color: #999;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+.case-large {
+  width: 50%;
+  float: left;
+  text-align: right;
+}
+.case-small {
+  width: 50%;
+  text-align: left;
+  float: right;
+}
+
+.button {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+.button a {
+  display: inline-block;
+  text-align: center;
+  padding: 12px 24px;
+  background: #212122;
+  color: #f9f9f7;
+  text-decoration: none;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.button a:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding: 0 10px;
+  }
+  .header h1 {
+    font-size: 48px;
+  }
+  .case, .case-small, .case-large {
+    float: none;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
 }

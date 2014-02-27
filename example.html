@@ -6,32 +6,47 @@
   <link rel="stylesheet" href="dist/style.css">
   <link rel="stylesheet" href="dist/site.css">
   <link rel="stylesheet" href="social.css">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21475122-5']);
+    _gaq.push(['_setCustomVar', 1, 'Repo', 'lepture/social']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      if (location.port) return;
+      ga.src = '//www.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 <body>
   <div class="container">
-    <div class="header">
+    <div class="header section">
       <h1>Social Button</h1>
       <p>Share your notes with a beautiful social button.</p>
     </div>
-    <div class="case">
-      <h2>Large Buttons</h2>
+    <div class="section center">
       <div class="social-button"
         data-twitter="lepture"
         data-facebook="lepture"
         data-weibo="lepture"
         data-count="true"
-        data-text="Share your notes with this beautiful social button."
+        data-text="Share your notes with a beautiful social button."
         data-url="https://github.com/"></div>
-
-      <h2>Large Buttons</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="case case-large">
+      <code>.social-button-large</code>
       <div class="social-button social-button-large"
         data-twitter="lepture"
         data-facebook="lepture"
         data-weibo="lepture"
         data-text="Share your notes with this beautiful social button."
         data-url="https://github.com/"></div>
-
-      <h2>Small Buttons</h2>
+    </div>
+    <div class="case case-small">
+      <code>.social-button-small</code>
       <div class="social-button social-button-small"
         data-twitter="lepture"
         data-facebook="lepture"
@@ -39,6 +54,9 @@
         data-text="Share your notes with this beautiful social button."
         data-url="https://github.com/"></div>
     </div>
+  </div>
+  <div class="container button">
+    <a href="https://github.com/lepture/social">Getting Started</a>
   </div>
   <script src="dist/widget.js"></script>
 </body>
