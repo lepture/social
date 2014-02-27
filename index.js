@@ -1,5 +1,5 @@
 /**
- * Social widget
+ * Social Button
  *
  * Copyright (c) 2014 by Hsiaoming Yang.
  */
@@ -47,11 +47,15 @@ function social(el, prefix) {
     if (name === 'twitter') {
       link += '&via=' + encodeURIComponent(author[name]);
     } else {
-      text = title + ' @' + author[name];
+      text = title + ' via @' + author[name];
     }
 
     link = link.replace('{title}', encodeURIComponent(text));
     link = link.replace('{url}', encodeURIComponent(url));
+
+    if (name === 'weibo' && el.getAttribute('data-pic')) {
+      link += '&pic=' + encodeURIComponent(el.getAttribute('data-pic'));
+    }
     icon.href = link;
 
     icon.onclick = function(e) {
