@@ -42,14 +42,15 @@ function social(el, prefix) {
     icon.target = '_blank';
 
     var link = SERVICES[name];
+    var text = title;
 
     if (name === 'twitter') {
       link += '&via=' + encodeURIComponent(author[name]);
     } else {
-      title = title + ' @' + author[name];
+      text = title + ' @' + author[name];
     }
 
-    link = link.replace('{title}', encodeURIComponent(title));
+    link = link.replace('{title}', encodeURIComponent(text));
     link = link.replace('{url}', encodeURIComponent(url));
     icon.href = link;
 
