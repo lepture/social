@@ -25,6 +25,7 @@ gh-pages: compile
 	@cp example.html .gh-pages/index.html
 	@cp social.css .gh-pages/
 	@cp -r dist .gh-pages/
+	@ghp-import -n .gh-pages
 
 watch:
 	@rewatch index.js -c "make compile"
