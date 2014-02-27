@@ -67,11 +67,16 @@ function social(el, prefix) {
       div.appendChild(span);
       span.className = 'hide';
 
-      fn(url, function(c) {
-        span.innerHTML = format(c);
-        span.className = 'social-button-count';
-        span.style.marginLeft = '-' + Math.floor(span.clientWidth / 2) + 'px';
-      });
+      try {
+        fn(url, function(c) {
+          span.innerHTML = format(c);
+          span.className = 'social-button-count';
+          span.style.marginLeft = '-' + Math.floor(span.clientWidth / 2) + 'px';
+        });
+      } catch (e) {
+        // query count failed
+        div.removeChild(span);
+      }
     }
     el.appendChild(div);
     return div;
