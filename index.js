@@ -121,10 +121,17 @@ function twitterCount(url, cb) {
 /**
  * Send a jsonp request.
  */
+var _jsonpCache = {};
+var _jsonpCount = 0;
 function jsonp(url, callback) {
-  var funcname = '_social_' + new Date().valueOf();
+  if (_jsonpCache[url]) {
+    return callback(_jsonpCache[url]);
+  }
+  _jsonpCount += 1;
+  var funcname = '_social_' + _jsonpCount;
 
   window[funcname] = function(response) {
+    _jsonpCache[url] = response;
     callback(response);
   };
 
