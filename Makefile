@@ -15,6 +15,9 @@ compile:
 	@cat dist/helper.js >> dist/widget.js
 	@echo '})();' >> dist/widget.js
 	@uglifyjs dist/widget.js -m -o dist/widget.js
+	@cat social.css > dist/widget.css
+	@cat dist/style.css >> dist/widget.css
+	@cleancss dist/widget.css -o dist/widget.css
 
 gh-pages: compile
 	@rm -fr .gh-pages

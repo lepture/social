@@ -1,4 +1,4 @@
 components
 build
-dist/widget.js
+dist/widget.*
 .gh-pages/
