@@ -53,8 +53,8 @@ function social(el, prefix) {
     link = link.replace('{title}', encodeURIComponent(text));
     link = link.replace('{url}', encodeURIComponent(url));
 
-    if (name === 'weibo' && el.getAttribute('data-pic')) {
-      link += '&pic=' + encodeURIComponent(el.getAttribute('data-pic'));
+    if (name === 'weibo' && el.getAttribute('data-image')) {
+      link += '&pic=' + encodeURIComponent(el.getAttribute('data-image'));
     }
     icon.href = link;
 
