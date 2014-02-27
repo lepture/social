@@ -9,6 +9,7 @@ var SERVICES = {
   facebook: 'http://www.facebook.com/sharer.php?t={title}&u={url}',
   weibo: 'http://service.weibo.com/share/share.php?title={title}&url={url}'
 };
+var WEIBO_KEY = 8003029170;
 
 function social(el, prefix) {
   prefix = prefix || 'icon-';
@@ -16,6 +17,7 @@ function social(el, prefix) {
   var title = el.getAttribute('data-text');
   var url = el.getAttribute('data-url') || location.href;
   var showCount = el.getAttribute('data-count');
+  WEIBO_KEY = el.getAttribute('data-weibo-key') || WEIBO_KEY;
 
   var author = {
     twitter: el.getAttribute('data-twitter'),
@@ -25,7 +27,8 @@ function social(el, prefix) {
 
   var counter = {
     twitter: twitterCount,
-    facebook: facebookCount
+    facebook: facebookCount,
+    weibo: weiboCount
   };
 
   function createElement(name) {
@@ -117,6 +120,24 @@ function twitterCount(url, cb) {
   var base = 'http://urls.api.twitter.com/1/urls/count.json?url=';
   jsonp(base + encodeURIComponent(url), function(resp) {
     cb(resp.count);
+  });
+}
+
+/**
+ * Query weibo link count.
+ */
+function weiboCount(url, cb) {
+  var link = 'https://api.weibo.com/2/short_url/shorten.json?source=';
+  link += encodeURIComponent(WEIBO_KEY) + '&url_long=';
+  link += encodeURIComponent(url);
+  jsonp(link, function(resp) {
+    var shorturl = resp.data.urls[0].url_short;
+    link = 'https://api.weibo.com/2/short_url/share/counts.json?source=';
+    link += encodeURIComponent(WEIBO_KEY) + '&url_short=';
+    link += encodeURIComponent(shorturl);
+    jsonp(link, function(resp) {
+      cb(resp.data.urls[0].share_counts);
+    });
   });
 }
 
