@@ -15,6 +15,7 @@ function social(el, prefix) {
 
   var title = el.getAttribute('data-text');
   var url = el.getAttribute('data-url') || location.href;
+  var showCount = el.getAttribute('data-count');
 
   var author = {
     twitter: el.getAttribute('data-twitter'),
@@ -58,7 +59,7 @@ function social(el, prefix) {
     div.appendChild(icon);
 
     var fn = counter[name];
-    if (fn) {
+    if (fn && showCount) {
       var span = document.createElement('span');
       div.appendChild(span);
       span.className = 'hide';
@@ -140,6 +141,7 @@ function jsonp(url, callback) {
   var script = document.createElement('script');
   script.src = src + 'callback=' + funcname;
   script.async = true;
+  script.defer = true;
 
   window[funcname] = function(response) {
     _jsonpCache[url] = response;
@@ -147,9 +149,13 @@ function jsonp(url, callback) {
   };
 
   script.onload = function() {
-    document.body.removeChild(script);
     delete window[funcname];
   };
+
+  setTimeout(function() {
+    document.body.removeChild(script);
+  }, 1000);
+
   document.body.appendChild(script);
   _jsonpCount += 1;
 }
