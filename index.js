@@ -123,6 +123,9 @@ function facebookCount(url, cb) {
  */
 function twitterCount(url, cb) {
   var base = 'https://cdn.api.twitter.com/1/urls/count.json?url=';
+  if (location.protocol === 'http:') {
+    base = 'http://urls.api.twitter.com/1/urls/count.json?url=';
+  }
   jsonp(base + encodeURIComponent(url), function(resp) {
     cb(resp.count);
   });
