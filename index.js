@@ -12,8 +12,7 @@ var SERVICES = {
 var WEIBO_KEY = 8003029170;
 
 function social(el, prefix) {
-  prefix = prefix || 'icon-';
-
+  prefix = prefix || el.getAttribute('data-icon-prefix') || 'icon-';
   var title = el.getAttribute('data-text');
   var url = el.getAttribute('data-url') || location.href;
   var showCount = el.getAttribute('data-count');

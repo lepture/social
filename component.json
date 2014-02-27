@@ -1,9 +1,15 @@
 {
   "name": "social",
   "repo": "lepture/social",
-  "description": "Social widget for everything.",
-  "version": "0.0.1",
-  "keywords": [],
+  "description": "Share your notes with a beautiful social button.",
+  "version": "0.1.0",
+  "keywords": [
+    "social",
+    "button",
+    "weibo",
+    "twitter",
+    "facebook"
+  ],
   "dependencies": {},
   "development": {},
   "license": "MIT",
