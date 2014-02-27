@@ -6,10 +6,13 @@
   text-align: center;
   margin: 10px;
 }
+.social-button-item .hide {
+  display: none;
+}
 
 /* button size */
 .social-button-large .social-button-item {
-  font-size: 48px;
+  font-size: 36px;
 }
 .social-button-small .social-button-item {
   margin: 10px 5px;
@@ -31,7 +34,6 @@
 .social-button-icon-weibo:hover {
   color: #e32428;
 }
-
 .social-button-count {
   position: absolute;
   left: 50%;
