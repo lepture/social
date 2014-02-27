@@ -61,6 +61,7 @@ function social(el, prefix) {
     if (fn) {
       var span = document.createElement('span');
       div.appendChild(span);
+      span.className = 'hide';
 
       fn(url, function(c) {
         span.innerHTML = format(c);
@@ -127,26 +128,28 @@ function jsonp(url, callback) {
   if (_jsonpCache[url]) {
     return callback(_jsonpCache[url]);
   }
-  _jsonpCount += 1;
+
   var funcname = '_social_' + _jsonpCount;
+  var src;
+  if (~url.indexOf('?')) {
+    src = url + '&';
+  } else {
+    src = url + '?';
+  }
+
+  var script = document.createElement('script');
+  script.src = src + 'callback=' + funcname;
+  script.async = true;
 
   window[funcname] = function(response) {
     _jsonpCache[url] = response;
     callback(response);
   };
 
-  if (~url.indexOf('?')) {
-    url += '&';
-  } else {
-    url += '?';
-  }
-  url += 'callback=' + funcname;
-
-  var script = document.createElement('script');
-  script.src = url;
   script.onload = function() {
     document.body.removeChild(script);
     delete window[funcname];
   };
   document.body.appendChild(script);
+  _jsonpCount += 1;
 }
