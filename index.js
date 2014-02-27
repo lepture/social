@@ -122,7 +122,7 @@ function facebookCount(url, cb) {
  * Query twitter tweets count.
  */
 function twitterCount(url, cb) {
-  var base = 'http://urls.api.twitter.com/1/urls/count.json?url=';
+  var base = 'https://cdn.api.twitter.com/1/urls/count.json?url=';
   jsonp(base + encodeURIComponent(url), function(resp) {
     cb(resp.count);
   });
