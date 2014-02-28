@@ -5,23 +5,25 @@
  */
 
 var SERVICES = {
-  twitter: 'https://twitter.com/intent/tweet?text={title}&url={url}',
-  facebook: 'http://www.facebook.com/sharer.php?t={title}&u={url}',
-  weibo: 'http://service.weibo.com/share/share.php?title={title}&url={url}'
+  twitter: 'https://twitter.com/intent/tweet?text={text}&url={url}',
+  facebook: 'http://www.facebook.com/sharer.php?t={text}&u={url}',
+  weibo: 'http://service.weibo.com/share/share.php?title={text}&url={url}'
 };
 var WEIBO_KEY = 8003029170;
 
-function social(el, prefix) {
-  prefix = prefix || el.getAttribute('data-icon-prefix') || 'icon-';
-  var title = el.getAttribute('data-text');
-  var url = el.getAttribute('data-url') || location.href;
-  var showCount = el.getAttribute('data-count');
-  WEIBO_KEY = el.getAttribute('data-weibo-key') || WEIBO_KEY;
+function social(el, options) {
+  options = options || {};
+  var prefix = options.prefix || el.getAttribute('data-prefix') || 'icon-';
+  var text = options.text || el.getAttribute('data-text');
+  var url = options.url || el.getAttribute('data-url') || location.href;
+  var image = options.image || el.getAttribute('data-image');
+  var showCount = options.count || el.getAttribute('data-count');
+  WEIBO_KEY = options.weiboKey || el.getAttribute('data-weibo-key') || WEIBO_KEY;
 
   var author = {
-    twitter: el.getAttribute('data-twitter'),
-    facebook: el.getAttribute('data-facebook'),
-    weibo: el.getAttribute('data-weibo')
+    twitter: options.twitter || el.getAttribute('data-twitter'),
+    facebook: options.facebook || el.getAttribute('data-facebook'),
+    weibo: options.weibo || el.getAttribute('data-weibo')
   };
 
   var counter = {
@@ -42,19 +44,19 @@ function social(el, prefix) {
     icon.target = '_blank';
 
     var link = SERVICES[name];
-    var text = title;
+    var data = text;
 
     if (name === 'twitter') {
       link += '&via=' + encodeURIComponent(author[name]);
     } else {
-      text = title + ' via @' + author[name];
+      data = text + ' via @' + author[name];
     }
 
-    link = link.replace('{title}', encodeURIComponent(text));
+    link = link.replace('{text}', encodeURIComponent(data));
     link = link.replace('{url}', encodeURIComponent(url));
 
-    if (name === 'weibo' && el.getAttribute('data-image')) {
-      link += '&pic=' + encodeURIComponent(el.getAttribute('data-image'));
+    if (name === 'weibo' && image) {
+      link += '&pic=' + encodeURIComponent(image);
     }
     icon.href = link;
 
