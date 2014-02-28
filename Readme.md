@@ -1,6 +1,6 @@
-# Social Button
+# Social Buttons
 
-Share your notes with a beautiful social button.
+Share your notes with beautiful social buttons.
 
 View the demo at: http://lab.lepture.com/social/
 
