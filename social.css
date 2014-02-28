@@ -20,21 +20,21 @@
 }
 
 /* button icon */
-.social-button-icon {
+.social-button-item .social-button-icon {
   display: block;
   color: #979799;
   text-decoration: none !important;
 }
-.social-button-icon-twitter:hover {
-  color: #23acee;
+.social-button-item .social-button-icon-twitter:hover {
+  color: #23acee !important;
 }
-.social-button-icon-facebook:hover {
-  color: #3c5696;
+.social-button-item .social-button-icon-facebook:hover {
+  color: #3c5696 !important;
 }
-.social-button-icon-weibo:hover {
-  color: #e32428;
+.social-button-item .social-button-icon-weibo:hover {
+  color: #e32428 !important;
 }
-.social-button-count {
+.social-button-item .social-button-count {
   position: absolute;
   left: 50%;
   text-align: center;
@@ -54,7 +54,7 @@
 .social-button-item:hover .social-button-count {
   opacity: 1;
 }
-.social-button-count:before {
+.social-button-item .social-button-count:before {
   position: absolute;
   top: -6px;
   left: 50%;
