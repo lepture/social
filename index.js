@@ -77,7 +77,9 @@ function social(el, options) {
         fn(url, function(c) {
           span.innerHTML = format(c);
           span.className = 'social-button-count';
-          span.style.marginLeft = '-' + Math.floor(span.clientWidth / 2) + 'px';
+          setTimeout(function() {
+            span.style.marginLeft = '-' + Math.floor(span.clientWidth / 2) + 'px';
+          }, 300);
         });
       } catch (e) {
         // query count failed
