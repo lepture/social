@@ -26,13 +26,13 @@
   text-decoration: none !important;
 }
 .social-button-item .social-button-icon-twitter:hover {
-  color: #23acee;
+  color: #23acee !important;
 }
 .social-button-item .social-button-icon-facebook:hover {
-  color: #3c5696;
+  color: #3c5696 !important;
 }
 .social-button-item .social-button-icon-weibo:hover {
-  color: #e32428;
+  color: #e32428 !important;
 }
 .social-button-item .social-button-count {
   position: absolute;
