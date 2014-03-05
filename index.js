@@ -74,8 +74,8 @@ function social(el, options) {
       span.className = 'hide';
 
       // count same urls
-      var sameAs = el.getAttribute('data-sameas') || '';
-      sameAs = sameAs.split(/\s+/);
+      var sameAs = el.getAttribute('data-sameas');
+      sameAs = sameAs ? sameAs.split(/\s+/) : [];
       sameAs.push(url);
 
       try {
