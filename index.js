@@ -73,8 +73,13 @@ function social(el, options) {
       div.appendChild(span);
       span.className = 'hide';
 
+      // count same urls
+      var sameAs = el.getAttribute('data-sameas') || '';
+      sameAs = sameAs.split(/\s+/);
+      sameAs.push(url);
+
       try {
-        fn(url, function(c) {
+        mapCount(sameAs, fn, function(c) {
           span.innerHTML = format(c);
           span.className = 'social-button-count';
           setTimeout(function() {
@@ -113,6 +118,31 @@ function format(count) {
   }
 
   return count;
+}
+
+/**
+ * A simple async map count
+ */
+function mapCount(urls, fn, cb) {
+  var len = urls.length;
+  var completed = 0;
+  var running = 0;
+  var results = [];
+
+  while (running < len && completed < len) {
+    fn(urls[running], function(c) {
+      completed += 1;
+      results.push(c);
+      if (completed === len) {
+        var ret = 0;
+        for (var i = 0; i < results.length; i++) {
+          ret += results[i];
+        }
+        cb(ret);
+      }
+    });
+    running += 1;
+  }
 }
 
 /**
