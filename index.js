@@ -41,6 +41,8 @@ function social(el, options) {
     // social icon
     var icon = document.createElement('a');
     icon.className = 'social-button-icon social-button-icon-' + name + ' ' + prefix + name;
+    icon.setAttribute('aria-label', 'Share to ' + name);
+    icon.setAttribute('title', 'Share to ' + name);
     icon.target = '_blank';
 
     var link = SERVICES[name];
