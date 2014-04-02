@@ -184,7 +184,7 @@ function weiboCount(url, cb) {
     link += encodeURIComponent(WEIBO_KEY) + '&url_short=';
     link += encodeURIComponent(shorturl);
     jsonp(link, function(resp) {
-      cb(resp.data.urls[0].share_counts);
+      cb(parseInt(resp.data.urls[0].share_counts, 10));
     });
   });
 }
