@@ -221,10 +221,6 @@ function jsonp(url, callback) {
     delete window[funcname];
   };
 
-  setTimeout(function() {
-    document.body.removeChild(script);
-  }, 1000);
-
   document.body.appendChild(script);
   _jsonpCount += 1;
 }
