@@ -13,6 +13,8 @@ var WEIBO_KEY = 8003029170;
 
 function social(el, options) {
   options = options || {};
+  if (el.getAttribute('data-widget-rendered')) return;
+  el.setAttribute('data-widget-rendered', 'true');
   var prefix = options.prefix || el.getAttribute('data-prefix') || 'icon-';
   var text = options.text || el.getAttribute('data-text');
   var url = options.url || el.getAttribute('data-url') || location.href;
